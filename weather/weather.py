@@ -4,6 +4,8 @@ import xmltodict
 def read_File(filename,line):
     file = open(filename,"r")
     for i in range(int(line)):
+        if file.readline() == "":
+            continue
         print(file.readline().split("\n")[0])
     print("...")
 
@@ -25,7 +27,7 @@ def analyze_input(information):
     lst = information.split(" ")
     try:
         if lst[0] == 'head':
-            read_File(lst[3],lst[2])
+            read_File(lst[2],lst[1])
         elif lst[0] == 'weather':
             xml_to_json(lst[1])
         elif lst[0] == "exit":

@@ -1,5 +1,5 @@
 lion|king of the jungle
-raccon|trash panda
+raccoon|trash panda
 shark|hunter in ocean
 owl|night bird
 pig|A5

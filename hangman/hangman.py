@@ -6,6 +6,7 @@ class Hangman:
         self.highScore_text = ""
         self.highScore_point = 0
         self.level_pass = ""
+        self.guess_time = 10
     def gameStart(self):
         self.loadHighScore()
         print("Welcome to the hangman game !!!")
@@ -71,7 +72,6 @@ class Hangman:
         file.close()
 
     def gameProcess(self,word):
-        guess_time = 10
         wrong_guess = ""
         alphabet_remain = [0]*len(word)
         game_end  = False
@@ -84,7 +84,7 @@ class Hangman:
                     print(word[index], end=" ")
                 else:
                     print(word[index],end=" ")
-            print("> score :" + str(self.score)+" remaining wrong guess :"+str(guess_time),end=" ")
+            print("> score :" + str(self.score)+" remaining wrong guess :"+str(self.guess_time),end=" ")
 
             if wrong_guess != "":
                 print("wrong guess: "+ wrong_guess)
@@ -103,7 +103,7 @@ class Hangman:
                 self.checkWord(user_guess,word,alphabet_remain)
                 self.score += 15
             else:
-                guess_time -= 1
+                self.guess_time -= 1
                 if user_guess not in wrong_guess:
                     wrong_guess += user_guess+" "
 
@@ -111,7 +111,7 @@ class Hangman:
                 game_end = True
                 print("Correct !!! The word is " + word+ " Next word \n")
 
-            if guess_time == 0:
+            if self.guess_time == 0:
                 game_end = True
                 self.game_end = True
                 print("Game Over, Your score is "+str(self.score))
